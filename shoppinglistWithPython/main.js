@@ -22,7 +22,7 @@ let addWindow;
 app.on('ready', createWindow)
 
 // Run Python script 
-//runpy();
+runpy();
 
 //let shell = PythonShell.run("hello.py", null, function(err, results) {
 // if (err) throw err;
