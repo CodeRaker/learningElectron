@@ -22,16 +22,33 @@ let addWindow;
 app.on('ready', createWindow)
 
 // Run Python script 
+//runpy();
 
-//PythonShell.run("hello.py", null, function(err, results) {
+//let shell = PythonShell.run("hello.py", null, function(err, results) {
 // if (err) throw err;
-// console.log('hello.py finished.');
-// console.log('results', results);
+ //console.log('hello.py finished.');
+ //console.log('results', results);
+// shell.receive('results', function(results){
+// 	mainWindow.webContents.send('data', results);
+// });
 //});
-let shell = new PythonShell('hello.py');
-shell.receive('data', function(data){
-	mainWindow.webContents.send('data', data);
-});
+//let shell = new PythonShell('hello.py', function(err, results){
+//	shell.receive('results', function(results){
+//		mainWindow.webContents.send('data', results);
+//	});
+//});
+//shell.receive('data', function(data){
+//	mainWindow.webContents.send('data', data);
+//});
+
+function runpy(){
+	let pyshell = new PythonShell('hello.py');
+	pyshell.on('message', function (message) {
+	// received a message sent from the Python script (a simple "print" statement)
+	//console.log(message);
+	mainWindow.webContents.send('results', message);
+	});
+}
 
 // Create Main Window
 function createWindow(){
@@ -121,9 +138,9 @@ const mainMenuTemplate = [
 ];
 
 // If Mac, add empty object to beginning of mainMenuTemplate
-if(process.platform == 'darwin'){
-	mainMenuTemplate.unshift({});
-}
+//if(process.platform == 'darwin'){
+//	mainMenuTemplate.unshift({});
+//}
 
 // Add developer tools item if not in production
 if(process.env.NODE_ENV !== 'production'){

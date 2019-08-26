@@ -7,7 +7,7 @@ const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 // Set ENV
 // Production removes devtools
-process.env.NODE_ENV = 'production';
+//process.env.NODE_ENV = 'production';
 
 let mainWindow;
 let addWindow;
@@ -71,6 +71,7 @@ ipcMain.on('item:add', function(e, item){
 });
 
 // Create menu template
+
 const mainMenuTemplate = [
 	{
 		label: 'File',
@@ -99,10 +100,11 @@ const mainMenuTemplate = [
 	}
 ];
 
+
 // If Mac, add empty object to beginning of mainMenuTemplate
-if(process.platform == 'darwin'){
-	mainMenuTemplate.unshift({});
-}
+//if(process.platform == 'darwin'){
+//	mainMenuTemplate.unshift({});
+//}
 
 // Add developer tools item if not in production
 if(process.env.NODE_ENV !== 'production'){

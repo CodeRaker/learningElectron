@@ -1,9 +1,9 @@
-#from scapy.all import sniff
-import time
+from scapy.all import *
+import sys
 
-for i in range(10):
-	print("Hello "+str(i))
-	time.sleep(3)
+def pkt_callback(pkt):
+    if pkt.haslayer(IP):
+        print(pkt.payload.dst) # debug statement
+        sys.stdout.flush()
 
-#pcap = sniff(count=100)
-#print(pcap.summary())
+sniff(iface="en0", prn=pkt_callback, filter="tcp", store=0)

@@ -33,11 +33,11 @@
  	});
 
  	//print packet data from python
- 	ipcRenderer.on('data', function(event, data){ 
+ 	ipcRenderer.on('results', function(event, results){ 
  		ul.className = 'collection';
  		const li = document.createElement('li');
  		li.className = 'collection-item';
- 		const itemText = document.createTextNode(data);
+ 		const itemText = document.createTextNode(results);
  		li.appendChild(itemText);
  		ul.appendChild(li);
  	})
