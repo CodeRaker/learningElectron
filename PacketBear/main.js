@@ -20,6 +20,7 @@ var sniffingPackets = "false";
 
 let mainWindow;
 let addWindow;
+let pyshell;
 
 // Listen for app to be ready
 app.on('ready', createWindow)
@@ -29,21 +30,22 @@ app.on('ready', createWindow)
 
 // Add trigger functionality from mainWindow.html to main.js
 ipcMain.on('packetSniff', (event, arg) => {
-  packetSniff(arg);
+	if (arg === "stop") {
+		pyshell.terminate();
+		// mainWindow.webContents.executeJavaScript("alert('Hello There!');"); //run javascript into client side
+	} else {
+		startPacketSniff();
+	}
+  
 });
 
 
-
 // Start packetSniffer
-function packetSniff(arg){
-		let pyshell = new PythonShell('dummySniff.py');
+function startPacketSniff(){
+		pyshell = new PythonShell('packetSniff.py');
 		pyshell.on('message', function (message) {
 		mainWindow.webContents.send('results', message);
-		if (arg === "stop") {
-			pyshell.terminate();
-		}
 		});
-	
 }
 
 // Create Main Window

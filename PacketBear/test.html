@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PacketBear</title>
+    <link href="https://materializecss.com/css/prism.css" rel="stylesheet">
+	<link href="https://materializecss.com/css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+ <nav>
+ 	<div class="nav-wrapper">
+ 	<a class="brand-logo center">PacketBear</a>
+ </nav>
+ <div>
+
+ </div>
+
+        <h5>Preselected Section</h5>
+        <span>If you want a collapsible with a preopened section just add the
+          <code class="language-markup">active</code> class to the collapsible-header. </span>
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">filter_drama</i>First</div>
+            <div class="collapsible-body">
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut aliquip ex ea commodo consequat.</span>
+            </div>
+          </li>
+          <li class="active">
+            <div class="collapsible-header">
+              <i class="material-icons">place</i>Second</div>
+            <div class="collapsible-body">
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">whatshot</i>Third</div>
+            <div class="collapsible-body">
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+              </span>
+            </div>
+          </li>
+        </ul>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://materializecss.com/bin/materialize.js"></script>
+    <script>
+    $('.collapsible').collapsible();
+    $('.collapsible.expandable').collapsible({
+      accordion: false
+    });
+    </script>
+   <!-- <script src="https://materializecss.com/docs/js/init.js"></script> -->
+    </body>
+</html>

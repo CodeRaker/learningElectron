@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="card-panel grey darken-4">
+<html lang="en"">
 <head>
 	<title>PacketBear</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://materializecss.com/css/prism.css" rel="stylesheet">
+    <link href="https://materializecss.com/css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
  <nav>
@@ -22,49 +25,28 @@
     </table>
  </div>
 
- <ul></ul>
+<ul class="collapsible collapsible-accordion"></ul>
+
+</body>
+
 
  <script>
- 	const electron = require('electron');
- 	const {ipcRenderer} = electron;
- 	const ul = document.querySelector('ul');
-    var sniffingPackets = "false";
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    let sniffingPackets = "false";
 
- 	// Add item
- 	ipcRenderer.on('item:add', function(e, item){
- 		ul.className = 'collection';
- 		const li = document.createElement('li');
- 		li.className = 'collection-item';
- 		const itemText = document.createTextNode(item);
- 		li.appendChild(itemText);
- 		ul.appendChild(li);
- 	});
+    // Clear items
+    ipcRenderer.on('item:clear', function(){
+        ul.innerHTML = '';
+    });
 
- 	// Clear items
- 	ipcRenderer.on('item:clear', function(){
- 		ul.innerHTML = '';
- 	});
-
- 	//print packet data from python
- 	ipcRenderer.on('results', function(event, results){ 
- 		ul.className = 'collection';
- 		const li = document.createElement('li');
- 		li.className = 'collection-item';
- 		const itemText = document.createTextNode(results);
- 		li.appendChild(itemText);
- 		ul.appendChild(li);
- 	});
-
- 	// Remove item
- 	ul.addEventListener('dblclick', removeItem);
-
- 	function removeItem(e){
- 		e.target.remove();
- 		// Remove class from list if it's empty, otherwise there will be an empty box
- 		if(ul.children.length == 0){
- 			ul.className = '';
- 		}
- 	}
+    function removeItem(e){
+        e.target.remove();
+        // Remove class from list if it's empty, otherwise there will be an empty box
+        if(ul.children.length == 0){
+            ul.className = '';
+        }
+    }
 
 
     function toggleSniff(){
@@ -82,6 +64,8 @@
         ul.innerHTML = '';
     }
 
- </script>
-</body>
+</script>
+<script>window.$ = window.jQuery = require('jquery');</script>
+<script src="js/materialize.js"></script>
+<script src="js/packetVisualizor.js"></script>
 </html>

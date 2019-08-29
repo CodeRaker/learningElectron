@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="card-panel grey darken-4">
+<head>
+	<title>PacketBear</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+ <nav>
+ 	<div class="nav-wrapper">
+ 	<a class="brand-logo center">PacketBear</a>
+ </nav>
+ <div>
+    <table>
+        <tr>
+            <td>
+                <button id="sniff" onclick="toggleSniff()">Sniff</button>
+            </td>
+            <td>
+                <button id="clear" onclick="clearPackets()">Clear</button>
+            </td>
+        </tr>
+    </table>
+ </div>
+
+  <ul class="collapsible collapsible-accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+
+</body>
+ <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    var sniffingPackets = "false";
+
+    // Add item
+    ipcRenderer.on('item:add', function(e, item){
+        ul.className = 'collapsible';
+        const liBody = document.createElement('li');
+        li.className = 'collapsible-header';
+        const itemText = document.createTextNode(item);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+    });
+
+    // Clear items
+    ipcRenderer.on('item:clear', function(){
+        ul.innerHTML = '';
+    });
+
+    //print packet data from python
+    ipcRenderer.on('results', function(event, results){ 
+        ul.className = 'collection';
+        const li = document.createElement('li');
+        li.className = 'collection-item';
+        const itemText = document.createTextNode(results);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+    });
+
+    // Remove item
+    ul.addEventListener('dblclick', removeItem);
+
+    function removeItem(e){
+        e.target.remove();
+        // Remove class from list if it's empty, otherwise there will be an empty box
+        if(ul.children.length == 0){
+            ul.className = '';
+        }
+    }
+
+
+    function toggleSniff(){
+        if (sniffingPackets === "true") {
+            ipcRenderer.send('packetSniff', 'stop');
+            sniffingPackets = "false";
+        } else {
+            ipcRenderer.send('packetSniff', '');
+            sniffingPackets = "true";
+        }
+        
+    }
+
+    function clearPackets(){
+        ul.innerHTML = '';
+    }
+
+
+ </script>
+  <script>
+    window.$ = window.jQuery = require('https://code.jquery.com/jquery-3.2.1.min.js');
+</script>
+    <script src="./js/materialize.js"></script>
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+</script>
+</html>
