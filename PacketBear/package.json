@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "electron": "^6.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "python-shell": "^1.0.8"
   }
 }
