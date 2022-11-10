@@ -9,7 +9,7 @@
   "author": "Peter Glad",
   "license": "MIT",
   "dependencies": {
-    "electron": "^6.0.4",
+    "electron": "^18.3.7",
     "python-shell": "^1.0.8"
   }
 }
